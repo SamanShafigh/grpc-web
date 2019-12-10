@@ -303,11 +303,11 @@ run the 3 processes all in the background.
  ```
 
 NOTE: As per [this issue](https://github.com/grpc/grpc-web/issues/436):
-if you are running Docker on Mac/Windows, remove the `--network=host` option:
+if you are running Docker on Mac/Windows, first of all modify `envoy.yaml` file and use `address: host.docker.internal` instead of `address: localhost`. Second remove the `--network=host` option:
 
  ```sh
  ...
- $ docker run -d -p 8080:8080 helloworld/envoy
+ $ docker run -d -p 8080:8080 -p 9901:9901 helloworld/envoy
  ```
 
  3. Run the simple Web Server. This hosts the static file `index.html` and
